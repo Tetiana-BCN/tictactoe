@@ -51,9 +51,9 @@ public class TicTacToe {
 
         while (!validMove) {
             if (currentPlayer == 'X') {
-                System.out.println("Player X - Enter row (0-2):");
+                System.out.println("Player X - Choose and enter row (0-2):");
                 row = scanner.nextInt();
-                System.out.println("Player X - Enter column (0-2):");
+                System.out.println("Player X - Choose and enter column (0-2):");
                 col = scanner.nextInt();
 
                 if (isValidMove(row, col)) {
