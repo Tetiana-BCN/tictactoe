@@ -9,7 +9,7 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         initializeGame();
-
+        
         while (!gameOver) {
             displayBoard();
             makeMove();
@@ -21,6 +21,8 @@ public class TicTacToe {
     }
 
     private static void initializeGame() {
+        System.out.println("\t\nWelcome to the game Tic Tac Toe");
+        
         board = new char[3][3];
         currentPlayer = 'X';
         gameOver = false;
@@ -132,6 +134,6 @@ public class TicTacToe {
     }
 
     private static void displayFinalResult() {
-        System.out.println("Game over.");
+        System.out.println("End of the game.");
     }
 }
