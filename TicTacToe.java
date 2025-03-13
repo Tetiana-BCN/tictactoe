@@ -9,7 +9,7 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         initializeGame();
-        
+
         while (!gameOver) {
             displayBoard();
             makeMove();
@@ -22,7 +22,6 @@ public class TicTacToe {
 
     private static void initializeGame() {
         System.out.println("\t\nWelcome to the game Tic Tac Toe");
-        
         board = new char[3][3];
         currentPlayer = 'X';
         gameOver = false;
@@ -51,21 +50,42 @@ public class TicTacToe {
 
         while (!validMove) {
             if (currentPlayer == 'X') {
-                System.out.println("Player X - Choose and enter row (0-2):");
-                row = scanner.nextInt();
-                System.out.println("Player X - Choose and enter column (0-2):");
-                col = scanner.nextInt();
+
+                row = getValidInput("Player X - Choose and enter row (0-2):");
+                col = getValidInput("Player X - Choose and enter column (0-2):");
 
                 if (isValidMove(row, col)) {
                     board[row][col] = 'X';
                     validMove = true;
                 } else {
-                    System.out.println("Invalid move. Try again.");
+                    System.out.println(
+                            "Invalid move. That position is either out of bounds or already taken. Try again.");
                 }
             } else {
                 makeComputerMove();
                 validMove = true;
             }
+        }
+    }
+
+    private static int getValidInput(String prompt) {
+        int number;
+        while (true) {
+            System.out.println(prompt);
+            try {
+                number = scanner.nextInt();
+                if (number >= 0 && number <= 2) {
+                    return number;
+                } else {
+                    System.out.println("Invalid input. Choose and enter a number(0-2) Try again.");
+                    scanner.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input. Choose and enter a number(0-2) Try again.");
+                scanner.next();
+                scanner.nextLine();
+            }
+
         }
     }
 
