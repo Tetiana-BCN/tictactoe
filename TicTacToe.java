@@ -42,4 +42,42 @@ private static void displayBoard() {
         System.out.println("\n-------------");
     }
     System.out.println();
+
+
+private static void makeMove() {
+    int row, col;
+    boolean validMove = false;
+
+    while (!validMove) {
+        if (currentPlayer == 'X') {
+            System.out.println("Player X - Enter row (0-2):");
+            row = scanner.nextInt();
+            System.out.println("Player X - Enter column (0-2):");
+            col = scanner.nextInt();
+
+            if (isValidMove(row, col)) {
+                board[row][col] = 'X';
+                validMove = true;
+            } else {
+                System.out.println("Invalid move. Try again.");
+            }
+        } else {
+            makeComputerMove();
+            validMove = true;
+        }
+    }
 }
+
+private static void makeComputerMove() {
+    Random random = new Random();
+    int row, col;
+    do {
+        row = random.nextInt(3);
+        col = random.nextInt(3);
+    } while (!isValidMove(row, col));
+
+    board[row][col] = 'O';
+    System.out.println("Computer played at Row: " + row + " Column: " + col);
+}
+
+
